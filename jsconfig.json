@@ -1,0 +1,24 @@
+{
+    "compilerOptions": {
+        "target": "es6",
+        "baseUrl": "./src",
+        "allowSyntheticDefaultImports": false,
+        "paths": {
+            "Components/*": [
+                "components/*"
+            ],
+            "Pages/*": [
+                "pages/*"
+            ],
+            "Api/*": [
+                "api/*"
+            ]
+        },
+        "module": "commonjs",
+        "moduleResolution": "node"
+    },
+    "exclude": [
+        "dist",
+        "node_modules"
+    ]
+}

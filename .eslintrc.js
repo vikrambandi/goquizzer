@@ -23,6 +23,7 @@ module.exports = {
         'plugin:jsx-a11y/recommended',
         'plugin:prettier/recommended' // Make this the last element so prettier config overrides other formatting rules
     ],
+    plugins: ['prettier'],
     rules: {
         'prettier/prettier': ['error', {}, { usePrettierrc: true }] // Use our .prettierrc file as source
     }

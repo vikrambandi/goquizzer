@@ -1,9 +1,9 @@
 import React from 'react';
-import { Switch, Route } from 'react-router-dom';
+import { Switch, Route, Redirect } from 'react-router-dom';
 
-import Home from './components/Home';
-import Dashboard from './components/Dashboard';
-import Create from './components/Create';
+import Home from 'Pages/Home';
+import Dashboard from 'Pages/Dashboard';
+import Create from 'Pages/Create';
 
 import './App.scss';
 
@@ -11,7 +11,8 @@ function App() {
     return (
         <div className="App">
             <Switch>
-                <Route exact path="/" component={Home} />
+                <Redirect exact from="/" to="/home" />
+                <Route exact path="/home" component={Home} />
                 <Route path="/dashboard" component={Dashboard} />
                 <Route path="/create" component={Create} />
             </Switch>

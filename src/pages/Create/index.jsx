@@ -3,20 +3,12 @@ import { Button, Col, Input, Row } from 'antd';
 import TextArea from 'antd/lib/input/TextArea';
 // import Header from '../Header';
 import useCreate from './useCreate';
-import Footer from '../Footer/index';
+import Footer from '../../components/Footer/index';
 
 import styles from './style.module.scss';
 
 const Create = () => {
-    const {
-        question,
-        option1,
-        option2,
-        option3,
-        option4,
-        handleChange,
-        handleSubmit
-    } = useCreate();
+    const { question, option1, option2, option3, option4, handleChange, handleSubmit } = useCreate();
     return (
         <div>
             {/* <Header /> */}

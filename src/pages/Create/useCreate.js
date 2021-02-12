@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import { postGame } from '../../api';
+import { postGame } from 'Api';
 
 const useCreate = () => {
     const [question, setQuestion] = useState('');
@@ -7,6 +7,12 @@ const useCreate = () => {
     const [option2, setOption2] = useState('');
     const [option3, setOption3] = useState('');
     const [option4, setOption4] = useState('');
+
+    const testMethod = () => {
+        const addSum =
+            'vlasdljas cnpasdasdasmcas asdas as;d ' + 'asjd laskdjlajs   askdasd asd asj cjaopoqasdkvnasl vnu;asd';
+        return addSum;
+    };
 
     const handleChange = (el, { target: { value } }) => {
         switch (el) {
@@ -48,7 +54,8 @@ const useCreate = () => {
         option3,
         option4,
         handleChange,
-        handleSubmit
+        handleSubmit,
+        testMethod
     };
 };
 

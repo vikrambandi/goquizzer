@@ -3,11 +3,14 @@
         "source.fixAll.eslint": true
     },
     "eslint.validate": [
-        "javascript"
+        "javascript",
+        "javascriptreact"
     ],
     "editor.detectIndentation": false,
     "files.eol": "\n",
     "editor.formatOnType": true,
-    "javascript.preferences.importModuleSpecifierEnding": "minimal",
-    "typescript.preferences.importModuleSpecifierEnding": "minimal"
+    "eslint.run": "onSave",
+    "editor.formatOnSave": true,
+    "eslint.alwaysShowStatus": true,
+    "files.autoSave": "onFocusChange"
 }
