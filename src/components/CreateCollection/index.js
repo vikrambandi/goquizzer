@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import { Modal, Form, Input, Radio, Upload } from 'antd';
 import { InboxOutlined } from '@ant-design/icons';
 
@@ -24,7 +25,7 @@ const CollectionCreateForm = ({
             onOk={() => {
                 form.validateFields()
                     .then(values => {
-                        form.resetFields();
+                        // form.resetFields();
                         onCreate(values);
                     })
                     .catch(info => {
@@ -63,12 +64,23 @@ const CollectionCreateForm = ({
                     />
                 </Form.Item>
                 <Form.Item name="coverImage" label="Cover Image">
-                    <Form.Item name="dragger" valuePropName="fileList" getValueFromEvent={handleUpload} noStyle>
+                    <Form.Item
+                        name="dragger"
+                        valuePropName="fileList"
+                        getValueFromEvent={handleUpload}
+                        rules={[
+                            {
+                                required: true,
+                                message: 'Please upload a cover image!'
+                            }
+                        ]}
+                        noStyle
+                    >
                         <Upload.Dragger
                             name="cover-image"
                             action="#"
                             beforeUpload={() => false}
-                        // onRemove={handleRemoveFile}
+                            onRemove={handleRemoveFile}
                         >
                             <p className="ant-upload-drag-icon">
                                 <InboxOutlined />
@@ -77,8 +89,8 @@ const CollectionCreateForm = ({
                         </Upload.Dragger>
                     </Form.Item>
                 </Form.Item>
-                <Form.Item name="modifier" className="collection-create-form_last-form-item">
-                    <Radio.Group value={privacyMode} onChange={e => handleChange('privacyMode', e)}>
+                <Form.Item name="modifier" className="collection-create-form_last-form-item" value={privacyMode}>
+                    <Radio.Group onChange={e => handleChange('privacyMode', e)}>
                         <Radio value="public">Public</Radio>
                         <Radio value="private">Private</Radio>
                     </Radio.Group>
@@ -86,6 +98,17 @@ const CollectionCreateForm = ({
             </Form>
         </Modal>
     );
+};
+CollectionCreateForm.propTypes = {
+    visible: PropTypes.bool,
+    title: PropTypes.string.isRequired,
+    description: PropTypes.string.isRequired,
+    privacyMode: PropTypes.string.isRequired,
+    onCreate: PropTypes.func.isRequired,
+    onCancel: PropTypes.func.isRequired,
+    handleRemoveFile: PropTypes.func.isRequired,
+    handleUpload: PropTypes.func.isRequired,
+    handleChange: PropTypes.func.isRequired
 };
 
 export default CollectionCreateForm;

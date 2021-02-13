@@ -12,6 +12,9 @@
             ],
             "Api/*": [
                 "api/*"
+            ],
+            "Fb/*": [
+                "fb/*"
             ]
         },
         "module": "commonjs",

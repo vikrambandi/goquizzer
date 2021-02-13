@@ -1,5 +1,6 @@
 module.exports = {
     root: true, // Make sure eslint picks up the config at the root of the directory
+    parser: 'babel-eslint',
     parserOptions: {
         ecmaVersion: 2020, // Use the latest ecmascript standard
         sourceType: 'module', // Allows using import/export statements
@@ -25,6 +26,7 @@ module.exports = {
     ],
     plugins: ['prettier'],
     rules: {
-        'prettier/prettier': ['error', {}, { usePrettierrc: true }] // Use our .prettierrc file as source
+        'prettier/prettier': ['error', {}, { usePrettierrc: true }], // Use our .prettierrc file as source
+        'react/jsx-filename-extension': [1, { extensions: ['.js', '.jsx'] }]
     }
 };

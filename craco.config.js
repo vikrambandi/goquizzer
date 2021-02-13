@@ -4,7 +4,8 @@ module.exports = {
         alias: {
             Components: path.resolve(__dirname, 'src/components'),
             Pages: path.resolve(__dirname, 'src/pages'),
-            Api: path.resolve(__dirname, 'src/api')
+            Api: path.resolve(__dirname, 'src/api'),
+            Fb: path.resolve(__dirname, 'src/fb')
         }
     }
 };

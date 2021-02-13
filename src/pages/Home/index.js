@@ -1,7 +1,6 @@
 import React from 'react';
 import { Button, Layout } from 'antd';
 import { FolderAddFilled } from '@ant-design/icons';
-import { Link } from 'react-router-dom';
 import Header from 'Components/Header';
 import Footer from 'Components/Footer';
 import Sider from 'Components/Sider';
@@ -17,6 +16,7 @@ const Home = () => {
         handleChange,
         handleUpload,
         handleRemoveFile,
+        toggleCollectionForm,
         handleCreateCollection
     } = useHome();
     return (
@@ -29,7 +29,7 @@ const Home = () => {
                     shape="round"
                     icon={<FolderAddFilled />}
                     size="large"
-                    onClick={() => handleCreateCollection(true)}
+                    onClick={() => toggleCollectionForm(true)}
                 >
                     Create a Collection
                 </Button>
@@ -39,8 +39,8 @@ const Home = () => {
                     privacyMode={privacyMode}
                     handleChange={handleChange}
                     visible={showCreateCollection}
-                    onCreate={() => console.log('on create')}
-                    onCancel={() => handleCreateCollection(false)}
+                    onCreate={handleCreateCollection}
+                    onCancel={() => toggleCollectionForm(false)}
                     handleUpload={handleUpload}
                     handleRemoveFile={handleRemoveFile}
                 />

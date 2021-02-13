@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import { Link } from 'react-router-dom';
 import { Layout, Menu } from 'antd';
 import styles from './styles.module.scss';
@@ -21,3 +22,7 @@ export default function Header({ path }) {
         </Layout.Header>
     );
 }
+
+Header.propTypes = {
+    path: PropTypes.string.isRequired
+};
