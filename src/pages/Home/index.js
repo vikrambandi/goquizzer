@@ -1,5 +1,5 @@
 import React from 'react';
-import { Button, Layout } from 'antd';
+import { Button, Layout, Space, Spin } from 'antd';
 import { FolderAddFilled } from '@ant-design/icons';
 import Header from 'Components/Header';
 import Footer from 'Components/Footer';
@@ -12,6 +12,8 @@ const Home = () => {
         title,
         description,
         privacyMode,
+        userCollections,
+        isFetching,
         showCreateCollection,
         handleChange,
         handleUpload,
@@ -24,15 +26,22 @@ const Home = () => {
             <Header path="home" />
             <Sider />
             <Layout.Content style={{ padding: '0 24px', minHeight: 280 }}>
-                <Button
-                    type="primary"
-                    shape="round"
-                    icon={<FolderAddFilled />}
-                    size="large"
-                    onClick={() => toggleCollectionForm(true)}
-                >
-                    Create a Collection
-                </Button>
+                {!isFetching ? (
+                    <Space size="middle">
+                        <Spin size="large" />
+                    </Space>
+                ) : (
+                    <Button
+                        type="primary"
+                        shape="round"
+                        icon={<FolderAddFilled />}
+                        size="large"
+                        onClick={() => toggleCollectionForm(true)}
+                    >
+                        Create a Collection
+                    </Button>
+                )}
+                {userCollections.length && userCollections.map(col => <span key={col.title}>{col.title}</span>)}
                 <CreateCollection
                     title={title}
                     description={description}

@@ -1,5 +1,9 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
+import { useSelector, useDispatch } from 'react-redux';
 import { storage } from 'Fb';
+import { createCollection } from 'Api';
+import { fetchCollections } from 'Actions';
+import { getCollectionsList, isFetchingCollections } from './helpers';
 
 const useHome = () => {
     const [showCreateCollection, setCreateCollection] = useState(false);
@@ -8,17 +12,30 @@ const useHome = () => {
     const [privacyMode, setPrivacyMode] = useState('public');
     const [coverImage, setCoverImage] = useState(null);
 
+    const dispatch = useDispatch();
+    const userCollections = useSelector(getCollectionsList);
+    const isFetching = useSelector(isFetchingCollections);
+
     const handleCreateCollection = () => {
         console.log('handleCreateCollection');
         const storageRef = storage.ref();
-        // 1.first upload the image to storage
         storageRef
-            .child('cover_image/' + coverImage.name)
+            .child(`cover_image/${coverImage.name}`)
             .put(coverImage, { contentType: coverImage.type })
-            .then(snapshot => console.log(snapshot))
+            .then(snapshot => {
+                snapshot.ref
+                    .getDownloadURL()
+                    .then(image => {
+                        createCollection({
+                            title,
+                            description,
+                            privacyMode,
+                            coverImage: image
+                        });
+                    })
+                    .catch(err => console.err(err));
+            })
             .catch(err => console.log(' error uploading file: ', err));
-        // 2. fetch the image url from storage upload response
-        // 3. add  collection values to database
     };
 
     const toggleCollectionForm = val => {
@@ -48,16 +65,23 @@ const useHome = () => {
                 setPrivacyMode(value);
                 break;
             default:
-                return;
         }
     };
+
+    useEffect(() => {
+        dispatch(fetchCollections());
+    }, [dispatch]);
 
     return {
         title,
         coverImage,
         description,
         privacyMode,
+        userCollections,
+
+        isFetching,
         showCreateCollection,
+
         handleRemoveFile,
         handleChange,
         handleUpload,

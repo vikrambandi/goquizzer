@@ -1,32 +1,60 @@
+const path = require('path');
+
 module.exports = {
-    root: true, // Make sure eslint picks up the config at the root of the directory
-    parser: 'babel-eslint',
+    env: {
+        node: true,
+        browser: true,
+        es6: true
+    },
+    extends: ['eslint:recommended', 'airbnb', 'plugin:prettier/recommended', 'prettier/react', 'react-app'],
+    globals: {
+        Atomics: 'readonly',
+        SharedArrayBuffer: 'readonly'
+    },
     parserOptions: {
-        ecmaVersion: 2020, // Use the latest ecmascript standard
-        sourceType: 'module', // Allows using import/export statements
         ecmaFeatures: {
-            jsx: true // Enable JSX since we're using React
-        }
+            jsx: true
+        },
+        ecmaVersion: 2020,
+        sourceType: 'module'
     },
     settings: {
         react: {
             version: 'detect' // Automatically detect the react version
+        },
+        'import/resolver': {
+            alias: [
+                ['Components', path.resolve(__dirname, 'src/components')],
+                ['Pages', path.resolve(__dirname, 'src/pages')],
+                ['Api', path.resolve(__dirname, 'src/api')],
+                ['Actions', path.resolve(__dirname, 'src/ducks/actions')],
+                ['Reducers', path.resolve(__dirname, 'src/ducks/reducers')],
+                ['Fb', path.resolve(__dirname, 'src/fb')]
+            ]
         }
     },
-    env: {
-        browser: true, // Enables browser globals like window and document
-        amd: true, // Enables require() and define() as global variables as per the amd spec.
-        node: true // Enables Node.js global variables and Node.js scoping.
-    },
-    extends: [
-        'eslint:recommended',
-        'plugin:react/recommended',
-        'plugin:jsx-a11y/recommended',
-        'plugin:prettier/recommended' // Make this the last element so prettier config overrides other formatting rules
-    ],
-    plugins: ['prettier'],
+    plugins: ['prettier', 'react'],
     rules: {
-        'prettier/prettier': ['error', {}, { usePrettierrc: true }], // Use our .prettierrc file as source
-        'react/jsx-filename-extension': [1, { extensions: ['.js', '.jsx'] }]
+        'prettier/prettier': [
+            'error',
+            {},
+            {
+                usePrettierrc: true
+            }
+        ],
+        quotes: ['error', 'single'],
+        indent: [
+            'error',
+            4,
+            {
+                SwitchCase: 1
+            }
+        ],
+        'react/jsx-filename-extension': [
+            1,
+            {
+                extensions: ['.js', '.jsx']
+            }
+        ]
     }
 };

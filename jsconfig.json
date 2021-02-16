@@ -15,6 +15,12 @@
             ],
             "Fb/*": [
                 "fb/*"
+            ],
+            "Actions/*": [
+                "ducks/actions/*"
+            ],
+            "Reducers/*": [
+                "ducks/reducers/*"
             ]
         },
         "module": "commonjs",

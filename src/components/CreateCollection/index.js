@@ -100,7 +100,7 @@ const CollectionCreateForm = ({
     );
 };
 CollectionCreateForm.propTypes = {
-    visible: PropTypes.bool,
+    visible: PropTypes.bool.isRequired,
     title: PropTypes.string.isRequired,
     description: PropTypes.string.isRequired,
     privacyMode: PropTypes.string.isRequired,
