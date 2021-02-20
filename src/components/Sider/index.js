@@ -4,7 +4,7 @@ import { DesktopOutlined, PieChartOutlined, FileOutlined, TeamOutlined, UserOutl
 
 export default function Sider() {
     return (
-        <Layout.Sider>
+        <Layout.Sider width={200} theme="light">
             <div className="logo" />
             <Menu defaultSelectedKeys={['1']} mode="inline">
                 <Menu.Item key="1" icon={<PieChartOutlined />}>

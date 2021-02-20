@@ -8,6 +8,6 @@ export const postGame = body => axios.post('/games', { ...body });
 
 export const getGame = (id = 123) => axios.get(`/games/${id}`);
 
-export const createCollection = data => axios.post('/collections', { ...data });
+export const postCollection = body => axios.post('/collections', { ...body });
 
 export const getCollections = () => axios.get('/collections');

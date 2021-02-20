@@ -8,7 +8,7 @@ const initialState = {
 
 const collectionReducer = (state = initialState, action) => {
     switch (action.type) {
-        case Types.FETCH_COLLECTIONS:
+        case Types.FETCH_COLLECTIONS_PENDING:
             return { ...initialState, fetchingCollection: true };
         case Types.FETCH_COLLECTIONS_SUCCESS:
             return { ...state, fetchingCollection: false, userCollections: action.payload };

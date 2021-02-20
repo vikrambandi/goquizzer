@@ -4,6 +4,7 @@ import { Provider } from 'react-redux';
 import { BrowserRouter } from 'react-router-dom';
 import { createStore, applyMiddleware } from 'redux';
 import thunk from 'redux-thunk';
+import logger from 'redux-logger';
 
 import App from './App';
 import rootReducer from './ducks/reducers';
@@ -11,7 +12,7 @@ import rootReducer from './ducks/reducers';
 import * as serviceWorker from './serviceWorker';
 import './index.scss';
 
-const store = createStore(rootReducer, applyMiddleware(thunk));
+const store = createStore(rootReducer, applyMiddleware(...[thunk, logger]));
 
 ReactDOM.render(
     <React.StrictMode>

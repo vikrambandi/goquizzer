@@ -1,8 +1,7 @@
 import { useState, useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
-import { storage } from 'Fb';
-import { createCollection } from 'Api';
-import { fetchCollections } from 'Actions';
+
+import { fetchCollections, createCollection } from 'Actions';
 import { getCollectionsList, isFetchingCollections } from './helpers';
 
 const useHome = () => {
@@ -17,25 +16,14 @@ const useHome = () => {
     const isFetching = useSelector(isFetchingCollections);
 
     const handleCreateCollection = () => {
-        console.log('handleCreateCollection');
-        const storageRef = storage.ref();
-        storageRef
-            .child(`cover_image/${coverImage.name}`)
-            .put(coverImage, { contentType: coverImage.type })
-            .then(snapshot => {
-                snapshot.ref
-                    .getDownloadURL()
-                    .then(image => {
-                        createCollection({
-                            title,
-                            description,
-                            privacyMode,
-                            coverImage: image
-                        });
-                    })
-                    .catch(err => console.err(err));
+        dispatch(
+            createCollection({
+                title,
+                description,
+                privacyMode,
+                coverImage
             })
-            .catch(err => console.log(' error uploading file: ', err));
+        );
     };
 
     const toggleCollectionForm = val => {
@@ -46,7 +34,6 @@ const useHome = () => {
     };
 
     const handleUpload = files => {
-        console.log({ files });
         setCoverImage(files.file);
         return files && files.fileList;
     };
