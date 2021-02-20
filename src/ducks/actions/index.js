@@ -1,4 +1,3 @@
-// collection actions
 import { getCollections, postCollection } from 'Api';
 import { storage } from 'Fb';
 

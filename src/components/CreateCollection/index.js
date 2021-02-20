@@ -24,9 +24,9 @@ const CollectionCreateForm = ({
             onCancel={onCancel}
             onOk={() => {
                 form.validateFields()
-                    .then(values => {
+                    .then(() => {
+                        onCreate();
                         // form.resetFields();
-                        onCreate(values);
                     })
                     .catch(info => {
                         console.log('Validate Failed:', info);
