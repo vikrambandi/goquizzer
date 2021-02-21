@@ -1,4 +1,5 @@
 import { getCollections, postCollection } from 'Api';
+import { v4 as uuid } from 'uuid';
 import { storage } from 'Fb';
 
 import * as Types from './types';
@@ -20,7 +21,7 @@ export const createCollection = body => dispatch => {
 
     const storageRef = storage.ref();
     storageRef
-        .child(`cover_image/${body.coverImage.name}`)
+        .child(`cover_image/${uuid()}`)
         .put(body.coverImage, { contentType: body.coverImage.type })
         .then(snapshot => {
             snapshot.ref
